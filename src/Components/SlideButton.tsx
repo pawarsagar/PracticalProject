@@ -1,11 +1,11 @@
-import React, {FC, useMemo, useRef} from 'react';
-import {View, PanResponder, StyleSheet, Animated} from 'react-native';
+import React, { FC, useMemo, useRef } from "react";
+import { View, PanResponder, StyleSheet, Animated } from "react-native";
 
 interface SliderProps {
   onPressClick: () => void;
 }
 
-const Slider: FC<SliderProps> = ({onPressClick}) => {
+const Slider: FC<SliderProps> = ({ onPressClick }) => {
   const squarePosition = useRef(new Animated.Value(0)).current;
 
   const onDragStopped = () => {
@@ -33,17 +33,21 @@ const Slider: FC<SliderProps> = ({onPressClick}) => {
           }
         },
       }),
-    [],
+    []
   );
 
   return (
-    <View style={styles.container} {...panResponder.panHandlers}>
+    <View
+      style={styles.container}
+      {...panResponder.panHandlers}
+      testID="slider-component"
+    >
       <View style={[styles.rectangle]}>
         <Animated.View
           style={[
             styles.square,
             {
-              transform: [{translateX: squarePosition}],
+              transform: [{ translateX: squarePosition }],
             },
           ]}
         />
@@ -57,11 +61,11 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   rectangle: {
-    width: '100%',
+    width: "100%",
     height: 50,
-    backgroundColor: 'lightblue',
-    justifyContent: 'center',
-    alignItems: 'flex-start',
+    backgroundColor: "lightblue",
+    justifyContent: "center",
+    alignItems: "flex-start",
     paddingHorizontal: 10,
     marginVertical: 15,
     borderRadius: 10,
@@ -69,7 +73,7 @@ const styles = StyleSheet.create({
   square: {
     width: 40,
     height: 40,
-    backgroundColor: 'blue',
+    backgroundColor: "blue",
     borderRadius: 5,
   },
 });
